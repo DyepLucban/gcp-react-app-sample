@@ -15,5 +15,3 @@ steps:
     - 'gcr.io/$PROJECT_ID/${_SERVICE_NAME}:${COMMIT_SHA}'
     - '--region'
     - 'US'
-  images:
-  - 'gcr.io/$PROJECT_ID/${_SERVICE_NAME}:${COMMIT_SHA}'
