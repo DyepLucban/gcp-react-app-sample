@@ -1,14 +1,17 @@
-# Let's get the base image of node14
-FROM node:12
-# Create app directory
-WORKDIR /usr/src/app
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
-# Install app dependencies
-RUN npm install
-# Bundle app source
-COPY . .
-# Binding port
+# build environment
+FROM node:14-alpine as react-build
+WORKDIR /app
+COPY . ./
+RUN yarn
+RUN yarn build
+
+# server environment
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/configfile.template
+
+COPY --from=react-build /app/build /usr/share/nginx/html
+
+ENV PORT 8080
+ENV HOST 0.0.0.0
 EXPOSE 8080
-# Command to run our app
-CMD [ "npm", "start"]
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
