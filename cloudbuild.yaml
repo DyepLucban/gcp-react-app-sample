@@ -13,7 +13,7 @@ steps:
       'add-iam-policy-binding', 
       'my-service', 
       '--region', 
-      'northamerica-northeast1'. 
+      'northamerica-northeast1',
       '--member', 
       'allow-unauthenticated', 
       '--role', 
