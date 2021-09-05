@@ -10,4 +10,4 @@ steps:
     args: ['run', 'deploy', '${_SERVICE_NAME}', '--image', 'gcr.io/$PROJECT_ID/${_SERVICE_NAME}:${SHORT_SHA}', '--region', 'northamerica-northeast1', '--platform', 'managed', '--allow-unauthenticated']
   # Add IAM Policy
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'services', 'add-iam-policy-binding my-service', '--region', 'northamerica-northeast1', '--member', 'allUsers', '--role', 'roles/run.invoker'],
+    args: ['run', 'services', 'add-iam-policy-binding ${_SERVICE_NAME}', '--region', 'northamerica-northeast1', '--member', 'allUsers', '--role', 'roles/run.invoker'],
