@@ -10,6 +10,9 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
           This is a test push change from development branch v2.
         </p>
+        <p>
+          This changes is came from my new branch.
+        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
